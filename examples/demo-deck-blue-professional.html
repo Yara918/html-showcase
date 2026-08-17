@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>运营数据复盘 · 完整演示（8 页）</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FDFAE7;
+    --primary: #1E2BFA;
+    --text: #111111;
+    --text-muted: #6B6B6B;
+    --text-light: #9A9A9A;
+    --card-border: rgba(30, 43, 250, 0.20);
+    --card-bg: rgba(30, 43, 250, 0.04);
+    --radius: 14px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; background: #0B0B0F; overflow: hidden; }
+  #wrap { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; background: #0B0B0F; }
+  #stage { width: 1920px; height: 1080px; transform-origin: center center; position: relative; }
+  .slide {
+    position: absolute; inset: 0; background: var(--bg);
+    visibility: hidden; opacity: 0; pointer-events: none;
+    display: flex; flex-direction: column; padding: 84px 96px 0;
+    transition: opacity 0.45s ease;
+  }
+  .slide.active { visibility: visible; opacity: 1; pointer-events: auto; }
+  .chrome {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-bottom: 26px; border-bottom: 1px solid rgba(30,43,250,0.15);
+    font-family: 'Inter','Noto Sans SC',sans-serif; font-size: 18px; color: var(--text-light);
+  }
+  .chrome .brand { font-weight: 600; color: var(--primary); }
+  .body { flex: 1; padding: 56px 0 40px; display: flex; flex-direction: column; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px; width: fit-content;
+    background: var(--primary); color: #fff; border-radius: 100px;
+    padding: 8px 22px; font-family: 'Inter','Noto Sans SC',sans-serif;
+    font-size: 19px; font-weight: 600; letter-spacing: 0.02em;
+  }
+  h1 { font-family: 'Space Grotesk','Noto Sans SC',sans-serif; font-size: 104px; font-weight: 700; letter-spacing: -0.02em; color: var(--text); margin-top: 36px; line-height: 1.08; }
+  h2 { font-family: 'Space Grotesk','Noto Sans SC',sans-serif; font-size: 64px; font-weight: 700; letter-spacing: -0.015em; color: var(--text); }
+  .sub { font-family: 'Inter','Noto Sans SC',sans-serif; font-size: 30px; font-weight: 300; color: var(--text-muted); margin-top: 20px; line-height: 1.55; }
+  .sub b { color: var(--primary); font-weight: 600; }
+  .foot { display: flex; justify-content: space-between; align-items: center; padding: 26px 0 40px; font-family: 'Inter','Noto Sans SC',sans-serif; font-size: 17px; color: var(--text-light); }
+  /* 卡片 */
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; margin-top: 44px; }
+  .card { background: var(--card-bg); border: 1.5px solid var(--card-border); border-radius: var(--radius); padding: 30px 32px; }
+  .card .l { font-family: 'Inter','Noto Sans SC',sans-serif; font-size: 20px; font-weight: 500; color: var(--text-muted); }
+  .card .n { font-family: 'Space Grotesk','Noto Sans SC',sans-serif; font-size: 58px; font-weight: 700; color: var(--text); margin-top: 10px; letter-spacing: -0.02em; }
+  .card .n em { font-style: normal; color: var(--primary); }
+  .card .nt { font-family: 'Inter','Noto Sans SC',sans-serif; font-size: 16px; color: var(--text-light); margin-top: 8px; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 8px; border-radius: 100px;
+    padding: 8px 20px; font-family: 'Inter','Noto Sans SC',sans-serif; font-size: 16px; font-weight: 500;
+    background: rgba(30,43,250,0.06); border: 1px solid rgba(30,43,250,0.25); color: var(--primary);
+  }
+  /* 图表 */
+  .chart { margin-top: 30px; border-bottom: 2px solid rgba(17,17,17,0.15); border-left: 2px solid rgba(17,17,17,0.15); height: 330px; display: flex; align-items: flex-end; gap: 34px; padding: 0 20px 0 26px; }
+  .chart .bar { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .chart .bar i { width: 78%; background: rgba(30,43,250,0.22); border-radius: 8px 8px 0 0; }
+  .chart .bar.hl i { background: var(--primary); }
+  .chart .bar .v { font-family: 'Space Grotesk',sans-serif; font-size: 22px; font-weight: 600; color: var(--text); }
+  .chart .bar .x { font-family: 'Inter','Noto Sans SC',sans-serif; font-size: 18px; color: var(--text-muted); }
+  .donut { display: flex; align-items: center; gap: 90px; margin-top: 36px; }
+  .donut .ring { width: 300px; height: 300px; border-radius: 50%; background: conic-gradient(#1E2BFA 0 41%, #6A76FF 41% 63%, #AAB1FF 63% 82%, #E4E7FF 82% 100%); position: relative; }
+  .donut .ring::after { content: ''; position: absolute; inset: 72px; background: var(--bg); border-radius: 50%; }
+  .donut .ring .mid { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 1; }
+  .donut .ring .mid b { font-family: 'Space Grotesk',sans-serif; font-size: 44px; color: var(--text); }
+  .donut .ring .mid span { font-family: 'Inter','Noto Sans SC',sans-serif; font-size: 17px; color: var(--text-muted); }
+  .legend { display: flex; flex-direction: column; gap: 20px; }
+  .legend .li { display: flex; align-items: center; gap: 16px; font-family: 'Inter','Noto Sans SC',sans-serif; font-size: 22px; color: var(--text); }
+  .legend .li i { width: 18px; height: 18px; border-radius: 5px; }
+  .legend .li span { color: var(--text-light); font-size: 18px; }
+  /* 对比 */
+  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 44px; }
+  .cmp { border: 1.5px solid var(--card-border); border-radius: var(--radius); padding: 36px 40px; }
+  .cmp.hot { background: var(--card-bg); }
+  .cmp .t { font-family: 'Space Grotesk','Noto Sans SC',sans-serif; font-size: 30px; font-weight: 700; color: var(--text); }
+  .cmp ul { list-style: none; margin-top: 24px; }
+  .cmp li { font-family: 'Inter','Noto Sans SC',sans-serif; font-size: 24px; color: var(--text-muted); padding: 14px 0; border-bottom: 1px solid rgba(17,17,17,0.08); display: flex; justify-content: space-between; }
+  .cmp li b { color: var(--text); font-weight: 600; }
+  .cmp li .up { color: #059669; } .cmp li .down { color: #DC2626; }
+  /* 流程 */
+  .flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; margin-top: 56px; }
+  .step { text-align: center; }
+  .step .num { width: 96px; height: 96px; margin: 0 auto; border-radius: 100px; background: var(--primary); color: #fff; display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk',sans-serif; font-size: 40px; font-weight: 700; }
+  .step .t { font-family: 'Inter','Noto Sans SC',sans-serif; font-size: 26px; font-weight: 600; color: var(--text); margin-top: 22px; }
+  .step .d { font-family: 'Inter','Noto Sans SC',sans-serif; font-size: 18px; color: var(--text-muted); margin-top: 10px; line-height: 1.5; }
+  /* 两栏 */
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 44px; }
+  .colbox { border-radius: var(--radius); padding: 40px 44px; }
+  .colbox.issue { background: rgba(220,38,38,0.05); border: 1.5px solid rgba(220,38,38,0.25); }
+  .colbox.action { background: var(--card-bg); border: 1.5px solid var(--card-border); }
+  .colbox .h { font-family: 'Space Grotesk','Noto Sans SC',sans-serif; font-size: 34px; font-weight: 700; }
+  .colbox.issue .h { color: #DC2626; } .colbox.action .h { color: var(--primary); }
+  .colbox ul { list-style: none; margin-top: 22px; }
+  .colbox li { font-family: 'Inter','Noto Sans SC',sans-serif; font-size: 23px; color: var(--text); padding: 13px 0; border-bottom: 1px solid rgba(17,17,17,0.07); }
+  /* 收尾 */
+  .next { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; margin-top: 52px; }
+  .next .card .n { font-size: 44px; }
+  .thanks { margin-top: auto; text-align: center; padding-bottom: 30px; }
+  .thanks .t { font-family: 'Space Grotesk','Noto Sans SC',sans-serif; font-size: 72px; font-weight: 700; color: var(--text); }
+  .thanks .d { font-family: 'Inter','Noto Sans SC',sans-serif; font-size: 24px; color: var(--text-muted); margin-top: 14px; }
+  /* 进度点 */
+  #dots { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 10; }
+  #dots i { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.28); cursor: pointer; }
+  #dots i.on { background: var(--primary); }
+  @media (prefers-reduced-motion: reduce) { .slide { transition: none; } }
+</style>
+</head>
+<body>
+<div id="wrap"><div id="stage">
+
+  <!-- 01 封面 -->
+  <section class="slide active">
+    <div class="chrome"><span class="brand">OPS REVIEW</span><span>2026 Q3 · 内部材料</span></div>
+    <div class="body" style="justify-content:center;">
+      <span class="eyebrow">2026 Q3 · 运营数据复盘</span>
+      <h1>运营数据复盘</h1>
+      <div class="sub">工单 · 解决率 · 响应时长 —— 三个月经营指标回顾，<b>一切以数据为准</b></div>
+    </div>
+    <div class="foot"><span>运营中心</span><span>01 / 08</span></div>
+  </section>
+
+  <!-- 02 核心指标 -->
+  <section class="slide">
+    <div class="chrome"><span class="brand">OPS REVIEW</span><span>核心指标</span></div>
+    <div class="body">
+      <h2>核心指标</h2>
+      <div class="sub">四项指标全部达成目标，客诉率创季度新低</div>
+      <div class="grid4">
+        <div class="card"><div class="l">本月工单</div><div class="n">320<em> 单</em></div><div class="nt">环比 +8%</div></div>
+        <div class="card"><div class="l">解决率</div><div class="n">95.3<em>%</em></div><div class="nt">目标 ≥ 95%</div></div>
+        <div class="card"><div class="l">平均响应</div><div class="n">2.1<em>h</em></div><div class="nt">环比 -0.4h</div></div>
+        <div class="card"><div class="l">客诉率</div><div class="n">0.8<em>%</em></div><div class="nt">环比 -0.3%</div></div>
+      </div>
+      <div style="margin-top:34px;display:flex;gap:12px;">
+        <span class="pill">工单 → 解决率 → 客诉率 形成正向闭环</span>
+      </div>
+    </div>
+    <div class="foot"><span>数据口径：运营系统 · 虚构示例</span><span>02 / 08</span></div>
+  </section>
+
+  <!-- 03 趋势 -->
+  <section class="slide">
+    <div class="chrome"><span class="brand">OPS REVIEW</span><span>月度趋势</span></div>
+    <div class="body">
+      <h2>月度工单趋势</h2>
+      <div class="sub">4 月起持续改善，7 月达成目标并稳定在目标线之上</div>
+      <div class="chart" id="c1">
+        <div class="bar"><i style="height:42%"></i><span class="v">268</span><span class="x">2 月</span></div>
+        <div class="bar"><i style="height:55%"></i><span class="v">291</span><span class="x">3 月</span></div>
+        <div class="bar"><i style="height:48%"></i><span class="v">277</span><span class="x">4 月</span></div>
+        <div class="bar"><i style="height:66%"></i><span class="v">305</span><span class="x">5 月</span></div>
+        <div class="bar"><i style="height:62%"></i><span class="v">298</span><span class="x">6 月</span></div>
+        <div class="bar hl"><i style="height:100%"></i><span class="v">320</span><span class="x">7 月</span></div>
+      </div>
+    </div>
+    <div class="foot"><span>目标线：工单 300+ · 虚构示例</span><span>03 / 08</span></div>
+  </section>
+
+  <!-- 04 结构 -->
+  <section class="slide">
+    <div class="chrome"><span class="brand">OPS REVIEW</span><span>渠道结构</span></div>
+    <div class="body">
+      <h2>工单来源结构</h2>
+      <div class="sub">线上渠道占比超八成，线下渠道保持稳定</div>
+      <div class="donut">
+        <div class="ring">
+          <div class="mid"><b>320</b><span>本月工单</span></div>
+        </div>
+        <div class="legend">
+          <div class="li"><i style="background:#1E2BFA"></i>App 内反馈 <span>41% · 131 单</span></div>
+          <div class="li"><i style="background:#6A76FF"></i>公众号 <span>22% · 70 单</span></div>
+          <div class="li"><i style="background:#AAB1FF"></i>电话热线 <span>19% · 61 单</span></div>
+          <div class="li"><i style="background:#E4E7FF"></i>线下门店 <span>18% · 58 单</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>来源口径：运营系统 · 虚构示例</span><span>04 / 08</span></div>
+  </section>
+
+  <!-- 05 对比 -->
+  <section class="slide">
+    <div class="chrome"><span class="brand">OPS REVIEW</span><span>环比对比</span></div>
+    <div class="body">
+      <h2>本月 vs 上月</h2>
+      <div class="compare">
+        <div class="cmp">
+          <div class="t">本月 · 2026-07</div>
+          <ul>
+            <li>工单量 <b>320 单</b> <span class="up">↑ 7.4%</span></li>
+            <li>解决率 <b>95.3%</b> <span class="up">↑ 1.1%</span></li>
+            <li>平均响应 <b>2.1h</b> <span class="up">↓ 16%</span></li>
+            <li>客诉率 <b>0.8%</b> <span class="up">↓ 27%</span></li>
+          </ul>
+        </div>
+        <div class="cmp hot">
+          <div class="t">上月 · 2026-06</div>
+          <ul>
+            <li>工单量 <b>298 单</b></li>
+            <li>解决率 <b>94.2%</b></li>
+            <li>平均响应 <b>2.5h</b></li>
+            <li>客诉率 <b>1.1%</b></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>环比口径：自然月 · 虚构示例</span><span>05 / 08</span></div>
+  </section>
+
+  <!-- 06 流程 -->
+  <section class="slide">
+    <div class="chrome"><span class="brand">OPS REVIEW</span><span>处理流程</span></div>
+    <div class="body">
+      <h2>工单处理流程</h2>
+      <div class="sub">四步闭环，每步都有 SLA 兜底</div>
+      <div class="flow">
+        <div class="step"><div class="num">01</div><div class="t">接单</div><div class="d">多渠道统一接入，自动分诊</div></div>
+        <div class="step"><div class="num">02</div><div class="t">分诊</div><div class="d">按类型路由到对应处理组</div></div>
+        <div class="step"><div class="num">03</div><div class="t">处理</div><div class="d">标准话术 + 知识库支撑</div></div>
+        <div class="step"><div class="num">04</div><div class="t">回访</div><div class="d">48 小时内回访确认闭环</div></div>
+      </div>
+    </div>
+    <div class="foot"><span>流程版本：2026-07 · 虚构示例</span><span>06 / 08</span></div>
+  </section>
+
+  <!-- 07 问题与动作 -->
+  <section class="slide">
+    <div class="chrome"><span class="brand">OPS REVIEW</span><span>问题与动作</span></div>
+    <div class="body">
+      <h2>发现的问题 · 下月动作</h2>
+      <div class="cols">
+        <div class="colbox issue">
+          <div class="h">发现的问题</div>
+          <ul>
+            <li>高峰时段响应超 3 小时（占比 12%）</li>
+            <li>重复咨询占比仍达 18%</li>
+            <li>夜间工单自动分诊准确率 86%</li>
+          </ul>
+        </div>
+        <div class="colbox action">
+          <div class="h">下月动作</div>
+          <ul>
+            <li>新增高峰时段弹性排班</li>
+            <li>上线 FAQ 自助查询入口</li>
+            <li>分诊模型补充 200 条样本</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>动作项已列入 Q4 计划 · 虚构示例</span><span>07 / 08</span></div>
+  </section>
+
+  <!-- 08 收尾 -->
+  <section class="slide">
+    <div class="chrome"><span class="brand">OPS REVIEW</span><span>下一步</span></div>
+    <div class="body">
+      <h2>下一步</h2>
+      <div class="next">
+        <div class="card"><div class="l">Q4 目标</div><div class="n">97<em>%</em></div><div class="nt">解决率目标</div></div>
+        <div class="card"><div class="l">Q4 目标</div><div class="n">1.8<em>h</em></div><div class="nt">平均响应目标</div></div>
+        <div class="card"><div class="l">Q4 目标</div><div class="n">0.5<em>%</em></div><div class="nt">客诉率目标</div></div>
+      </div>
+      <div class="thanks">
+        <div class="t">谢谢</div>
+        <div class="d">以上数据为虚构示例 · 演示 Blue Professional 模板效果</div>
+      </div>
+    </div>
+    <div class="foot"><span>演示页面</span><span>08 / 08</span></div>
+  </section>
+
+</div></div>
+<div id="dots"></div>
+<script>
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var dotsBox = document.getElementById('dots');
+  slides.forEach(function (_, i) {
+    var d = document.createElement('i');
+    d.onclick = function () { go(i); };
+    dotsBox.appendChild(d);
+  });
+  var dots = dotsBox.children;
+  function go(i) {
+    if (i < 0 || i >= slides.length) return;
+    slides.forEach(function (s, k) { s.classList.toggle('active', k === i); });
+    Array.prototype.forEach.call(dots, function (d, k) { d.classList.toggle('on', k === i); });
+  }
+  document.addEventListener('keydown', function (e) {
+    var cur = slides.findIndex(function (s) { return s.classList.contains('active'); });
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); go(cur + 1); }
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); go(cur - 1); }
+    else if (e.key === 'Home') { go(0); }
+    else if (e.key === 'End') { go(slides.length - 1); }
+  });
+  document.addEventListener('touchstart', function (e) { var x0 = e.touches[0].clientX;
+    document.addEventListener('touchend', function (ev) {
+      var dx = ev.changedTouches[0].clientX - x0;
+      var cur = slides.findIndex(function (s) { return s.classList.contains('active'); });
+      if (dx < -40) go(cur + 1); else if (dx > 40) go(cur - 1);
+    }, { once: true });
+  });
+  function fit() {
+    var s = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+    document.getElementById('stage').style.transform = 'scale(' + s + ')';
+  }
+  window.addEventListener('resize', fit); fit(); go(0);
+</script>
+</body>
+</html>

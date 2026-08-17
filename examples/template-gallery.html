@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>html-showcase · 20 套模板画廊</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Archivo+Black&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600;700&family=Jost:wght@200;300;400&family=Lora:ital,wght@0,400;0,500;1,400&family=Cormorant+Garamond:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Unbounded:wght@600;700;800&family=Syne:wght@700&family=VT323&family=Orbitron:wght@700;800;900&family=Zen+Old+Mincho:wght@400;700&family=Caveat:wght@600;700&family=Patrick+Hand&family=Ma+Shan+Zheng&family=Anton&family=Josefin+Sans:wght@600;700&family=Noto+Sans+SC:wght@300;400;500;700;900&family=Noto+Serif+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #141414; color: #E8E8E4; font-family: 'Inter','Noto Sans SC',sans-serif; padding: 40px 48px 60px; }
+  h1 { font-size: 34px; font-weight: 700; letter-spacing: -0.01em; }
+  .intro { font-size: 15px; color: #A0A0A0; margin-top: 10px; line-height: 1.7; max-width: 1100px; }
+  .intro code { background: #262626; padding: 1px 6px; border-radius: 4px; color: #FFD166; }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; margin-top: 30px; }
+  .card { }
+  .slide { aspect-ratio: 16 / 9; border-radius: 6px; overflow: hidden; position: relative; box-shadow: 0 6px 18px rgba(0,0,0,0.45); }
+  .cap { margin-top: 10px; }
+  .cap .t { font-size: 15px; font-weight: 600; color: #F0F0EC; }
+  .cap .d { font-size: 12px; color: #9A9A9A; margin-top: 3px; line-height: 1.5; }
+  .tag { display: inline-block; font-size: 10px; letter-spacing: 0.06em; background: #262626; color: #C9C9C4; border-radius: 3px; padding: 1px 6px; margin-right: 4px; }
+  /* ===== 各模板迷你标题页 ===== */
+  .s-bp { background: #FDFAE7; padding: 26px 30px; display: flex; flex-direction: column; }
+  .s-bp .pill { background: #1E2BFA; color: #fff; border-radius: 100px; font-size: 10px; font-weight: 600; width: fit-content; padding: 4px 12px; letter-spacing: 0.02em; }
+  .s-bp .t { font-family: 'Space Grotesk','Noto Sans SC',sans-serif; font-size: 30px; font-weight: 700; color: #111; margin-top: 14px; letter-spacing: -0.02em; }
+  .s-bp .row { display: flex; gap: 8px; margin-top: auto; }
+  .s-bp .chip { background: rgba(30,43,250,0.05); border: 1px solid rgba(30,43,250,0.2); border-radius: 8px; padding: 6px 10px; font-size: 11px; color: #111; }
+  .s-bp .chip b { color: #1E2BFA; }
+
+  .s-sig { background: #1C2644; padding: 26px 30px; display: flex; flex-direction: column; }
+  .s-sig .k { font-size: 9px; letter-spacing: 0.18em; color: #C8A870; text-transform: uppercase; }
+  .s-sig .t { font-family: 'Source Serif 4','Noto Serif SC',serif; font-size: 30px; font-weight: 600; color: #F0ECE3; margin-top: 12px; }
+  .s-sig .r { width: 40px; height: 2px; background: #C8A870; margin-top: 14px; }
+  .s-sig .m { margin-top: auto; font-size: 10px; color: rgba(240,236,227,0.55); letter-spacing: 0.08em; }
+
+  .s-mono { background: #FAFADF; padding: 26px 30px; display: flex; flex-direction: column; }
+  .s-mono .k { font-family: 'JetBrains Mono',monospace; font-size: 9px; letter-spacing: 0.16em; color: #8A8A80; text-transform: uppercase; }
+  .s-mono .t { font-family: 'Jost','Noto Sans SC',sans-serif; font-size: 30px; font-weight: 200; color: #1A1A16; margin-top: 12px; letter-spacing: -0.01em; }
+  .s-mono .r { width: 36px; height: 1px; background: #1A1A16; margin-top: 14px; }
+  .s-mono .m { margin-top: auto; font-family: 'JetBrains Mono',monospace; font-size: 9px; color: #8A8A80; letter-spacing: 0.1em; }
+
+  .s-cg { background: #F6F3E9; padding: 24px 28px; display: flex; flex-direction: column; position: relative; }
+  .s-cg .g { position: absolute; inset: 0; background-image: linear-gradient(rgba(30,43,250,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(30,43,250,0.06) 1px, transparent 1px); background-size: 22px 22px; }
+  .s-cg .t { font-family: 'Playfair Display','Noto Serif SC',serif; font-size: 30px; font-weight: 600; color: #1426C9; position: relative; margin-top: 34px; }
+  .s-cg .r { width: 100%; height: 1px; background: rgba(20,38,201,0.35); position: relative; margin-top: 14px; }
+  .s-cg .m { position: relative; margin-top: auto; font-size: 9px; letter-spacing: 0.14em; color: #8A8A80; }
+
+  .s-ng { background: #F4F1EA; padding: 24px 28px; display: flex; flex-direction: column; position: relative; }
+  .s-ng .bar { position: absolute; left: 0; top: 0; width: 14px; height: 100%; background: #E3FF2E; }
+  .s-ng .t { font-family: 'Archivo Black','Noto Sans SC',sans-serif; font-size: 26px; color: #141414; margin-top: 36px; padding-left: 8px; }
+  .s-ng .m { margin-top: auto; font-family: 'JetBrains Mono',monospace; font-size: 9px; color: #8A8A80; letter-spacing: 0.1em; padding-left: 8px; }
+
+  .s-rg { background: #EFEAE3; padding: 22px 24px; display: flex; flex-direction: column; border: 3px solid #17171A; box-shadow: 6px 6px 0 rgba(23,23,26,0.85); }
+  .s-rg .k { font-family: 'JetBrains Mono',monospace; font-size: 9px; letter-spacing: 0.12em; color: #7A6A5F; }
+  .s-rg .t { font-family: 'Archivo Black','Noto Sans SC',sans-serif; font-size: 26px; color: #17171A; margin-top: 12px; }
+  .s-rg .r { width: 56px; height: 4px; background: #E8795A; margin-top: 12px; }
+  .s-rg .m { margin-top: auto; font-size: 9px; color: #8A847C; }
+
+  .s-sw { background: #F4F4F1; padding: 22px 24px; display: flex; flex-direction: column; position: relative; }
+  .s-sw .gl { position: absolute; inset: 0; pointer-events: none; }
+  .s-sw .gl i { position: absolute; top: 0; bottom: 0; width: 1px; background: rgba(163,163,170,0.4); }
+  .s-sw .k { font-family: 'JetBrains Mono',monospace; font-size: 8px; letter-spacing: 0.16em; color: #A3A3AA; text-transform: uppercase; position: relative; }
+  .s-sw .t { font-family: 'Archivo','Noto Sans SC',sans-serif; font-size: 30px; font-weight: 800; color: #17171A; margin-top: 10px; letter-spacing: -0.03em; position: relative; }
+  .s-sw .r { width: 30px; height: 2px; background: #E63312; margin-top: 10px; position: relative; }
+  .s-sw .m { position: absolute; right: 18px; bottom: 8px; font-family: 'Archivo',sans-serif; font-size: 44px; font-weight: 800; color: #A3A3AA; letter-spacing: -0.04em; }
+
+  .s-dw { background: #FAF7F2; padding: 22px 24px; display: flex; flex-direction: column; position: relative; }
+  .s-dw .k { font-family: 'JetBrains Mono',monospace; font-size: 8px; letter-spacing: 0.12em; color: #A39B8F; }
+  .s-dw .t { font-family: 'Newsreader','Noto Serif SC',serif; font-size: 30px; font-weight: 600; color: #26221E; margin-top: 8px; }
+  .s-dw .bars { display: flex; align-items: flex-end; gap: 5px; height: 52px; margin-top: auto; }
+  .s-dw .bars i { width: 14px; background: #C9C2B6; }
+  .s-dw .bars i.hl { background: #E63312; }
+  .s-dw .note { position: absolute; right: 16px; bottom: 10px; font-family: 'JetBrains Mono',monospace; font-size: 8px; color: #E63312; }
+
+  .s-gp { background: linear-gradient(135deg, #EAF2FF 0%, #F3EEFF 45%, #FFF0F2 75%, #EAFCF4 100%); padding: 22px; display: flex; flex-direction: column; position: relative; }
+  .s-gp .orb { position: absolute; border-radius: 50%; filter: blur(26px); }
+  .s-gp .o1 { width: 130px; height: 130px; background: #4F46E5; opacity: 0.45; right: -30px; top: -30px; }
+  .s-gp .o2 { width: 110px; height: 110px; background: #06B6D4; opacity: 0.35; left: -20px; bottom: -30px; }
+  .s-gp .card { position: relative; background: rgba(255,255,255,0.55); border: 1px solid rgba(255,255,255,0.65); border-radius: 18px; backdrop-filter: blur(10px); padding: 18px; height: 100%; display: flex; flex-direction: column; box-shadow: 0 10px 30px rgba(31,41,55,0.14); }
+  .s-gp .t { font-family: 'Sora','Noto Sans SC',sans-serif; font-size: 24px; font-weight: 700; color: #1E2430; }
+  .s-gp .m { margin-top: auto; font-size: 9px; color: #5B6472; }
+
+  .s-aur { background: #0B0F1E; padding: 22px; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+  .s-aur .blob { position: absolute; border-radius: 50%; filter: blur(46px); }
+  .s-aur .b1 { width: 170px; height: 170px; background: #8B5CF6; opacity: 0.55; top: -50px; right: -40px; }
+  .s-aur .b2 { width: 150px; height: 150px; background: #2DD4BF; opacity: 0.5; bottom: -60px; left: -30px; }
+  .s-aur .b3 { width: 120px; height: 120px; background: #EC4899; opacity: 0.4; bottom: 10px; right: 30px; }
+  .s-aur .k { position: relative; font-family: 'JetBrains Mono',monospace; font-size: 8px; letter-spacing: 0.16em; color: rgba(255,255,255,0.6); }
+  .s-aur .t { position: relative; font-family: 'Unbounded','Noto Sans SC',sans-serif; font-size: 26px; font-weight: 700; color: #fff; margin-top: 14px; text-shadow: 0 0 18px rgba(255,255,255,0.35); }
+
+  .s-db { background: #0A0A0A; padding: 16px; display: flex; align-items: center; justify-content: center; }
+  .s-db .board { width: 100%; background: #151515; border: 1px solid #3A3A3A; padding: 12px 14px; box-shadow: inset 0 0 0 4px #000, inset 0 0 24px rgba(0,0,0,0.8); }
+  .s-db .bt { display: flex; justify-content: space-between; font-size: 12px; color: #F5F5F0; margin-bottom: 8px; }
+  .s-db .bt .clk { font-family: 'JetBrains Mono',monospace; color: #FF9F1C; }
+  .s-db .row { display: grid; grid-template-columns: 62px 58px 1fr 52px; gap: 4px; margin-bottom: 4px; font-family: 'JetBrains Mono','Noto Sans SC',monospace; font-size: 10px; color: #FF9F1C; }
+  .s-db .row span { background: #232323; padding: 3px 6px; box-shadow: inset 0 1px 0 #3A3A3A, inset 0 -1px 0 #3A3A3A; }
+  .s-db .row .st { color: #FF9F1C; }
+  .s-db .row .dest { font-family: 'Noto Sans SC',sans-serif; }
+  .s-db .row .gate { color: #F5F5F0; }
+
+  .s-tk { background: #050B06; padding: 22px; display: flex; flex-direction: column; position: relative; }
+  .s-tk::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, rgba(0,0,0,0.28) 0 2px, transparent 2px 4px); pointer-events: none; }
+  .s-tk .ln { font-family: 'VT323','Noto Sans SC',monospace; font-size: 22px; color: #4AF626; text-shadow: 0 0 8px rgba(74,246,38,0.55); }
+  .s-tk .ln .cur { animation: tkblink 1s steps(2, start) infinite; }
+  .s-tk .m { margin-top: auto; font-family: 'VT323',monospace; font-size: 12px; color: #1E5C2E; }
+  @keyframes tkblink { 50% { opacity: 0; } }
+
+  .s-bh { background: #F2EFE9; padding: 22px; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+  .s-bh .circ { position: absolute; width: 96px; height: 96px; border-radius: 50%; background: #D0342C; right: -14px; top: -14px; }
+  .s-bh .sq { position: absolute; width: 52px; height: 52px; background: #1F4FA3; left: 16px; bottom: 14px; }
+  .s-bh .bar { position: absolute; width: 90px; height: 14px; background: #EAB308; right: 20px; bottom: 22px; }
+  .s-bh .t { font-family: 'Archivo Black','Noto Sans SC',sans-serif; font-size: 26px; color: #141414; margin-top: 20px; }
+  .s-bh .r { width: 44px; height: 3px; background: #141414; margin-top: 12px; }
+
+  .s-gl { background: #FAFAF7; padding: 24px 26px; display: flex; flex-direction: column; }
+  .s-gl .k { font-family: 'Inter',sans-serif; font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase; color: #6F6F6A; }
+  .s-gl .t { font-family: 'Cormorant Garamond','Noto Serif SC',serif; font-size: 32px; font-weight: 600; color: #1A1A18; margin-top: 14px; }
+  .s-gl .r { width: 100%; height: 1px; background: #D8D5CE; margin-top: auto; margin-bottom: 6px; }
+  .s-gl .m { font-size: 9px; color: #9C9C95; }
+
+  .s-rp { background: #FBF7EE; padding: 22px; display: flex; flex-direction: column; position: relative; }
+  .s-rp .dots { position: absolute; inset: 0; background-image: radial-gradient(rgba(232,71,47,0.28) 1.2px, transparent 1.2px); background-size: 7px 7px; opacity: 0.5; }
+  .s-rp .t { position: relative; font-family: 'Anton','Noto Sans SC',sans-serif; font-size: 28px; color: #2A2723; text-shadow: 3px 3px 0 rgba(34,102,204,0.5); margin-top: 26px; }
+  .s-rp .t2 { position: relative; font-family: 'Anton','Noto Sans SC',sans-serif; font-size: 28px; color: #2A2723; margin-top: -20px; }
+  .s-rp .m { position: relative; margin-top: auto; font-family: 'JetBrains Mono',monospace; font-size: 9px; color: #8A847A; }
+  .s-rp .reg { position: absolute; font-family: 'JetBrains Mono',monospace; font-size: 10px; color: #2A2723; }
+  .s-rp .r1 { top: 6px; left: 8px; } .s-rp .r2 { top: 6px; right: 8px; } .s-rp .r3 { bottom: 6px; left: 8px; } .s-rp .r4 { bottom: 6px; right: 8px; }
+
+  .s-wa { background: #F5F1E6; padding: 24px 26px; display: flex; flex-direction: column; position: relative; }
+  .s-wa .t { font-family: 'Zen Old Mincho','Noto Serif SC',serif; font-size: 30px; font-weight: 700; color: #1F1D1A; margin-top: 40px; }
+  .s-wa .r { width: 100%; height: 1px; background: #1F1D1A; margin-top: 16px; opacity: 0.7; }
+  .s-wa .seal { position: absolute; right: 20px; bottom: 16px; width: 34px; height: 34px; background: #B3402A; display: flex; align-items: center; justify-content: center; color: #F5F1E6; font-size: 18px; font-family: 'Zen Old Mincho',serif; }
+  .s-wa .m { margin-top: auto; font-size: 9px; color: #7A746A; letter-spacing: 0.08em; }
+
+  .s-mm { background: #F7F3EA; padding: 20px; display: flex; flex-direction: column; position: relative; }
+  .s-mm svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .s-mm .t { position: relative; font-family: 'Archivo','Noto Sans SC',sans-serif; font-size: 24px; font-weight: 700; color: #1A1A18; margin-top: 4px; }
+  .s-mm .legend { position: relative; margin-top: auto; display: flex; gap: 8px; font-size: 8px; color: #8A847C; }
+  .s-mm .legend i { display: inline-block; width: 12px; height: 3px; }
+
+  .s-kb { background: #C9996B; padding: 16px; display: flex; flex-direction: column; position: relative; }
+  .s-kb::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(rgba(0,0,0,0.16) 1px, transparent 1px); background-size: 6px 6px; }
+  .s-kb .tape { position: relative; background: rgba(255,255,255,0.35); transform: rotate(-1.5deg); padding: 4px 10px; width: fit-content; font-family: 'Caveat','Noto Sans SC',cursive; font-size: 14px; font-weight: 700; color: #2A2A28; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+  .s-kb .note { position: relative; margin-top: 10px; background: #FFD166; transform: rotate(1deg); padding: 10px 12px; font-family: 'Patrick Hand','Noto Sans SC',cursive; font-size: 15px; color: #2A2A28; box-shadow: 0 3px 8px rgba(0,0,0,0.25); width: fit-content; }
+  .s-kb .note2 { position: relative; margin-top: 8px; background: #A8D5A2; transform: rotate(-1deg); padding: 8px 12px; font-family: 'Patrick Hand','Noto Sans SC',cursive; font-size: 13px; color: #2A2A28; box-shadow: 0 3px 8px rgba(0,0,0,0.25); width: fit-content; }
+
+  .s-sc { background: #0C0C0C; padding: 18px; display: flex; flex-direction: column; position: relative; }
+  .s-sc .vs { display: flex; justify-content: space-between; align-items: flex-end; margin-top: auto; }
+  .s-sc .num { font-family: 'Orbitron','Noto Sans SC',sans-serif; font-size: 34px; font-weight: 800; }
+  .s-sc .n1 { color: #FF3B30; text-shadow: 0 0 12px rgba(255,59,48,0.7); }
+  .s-sc .n2 { color: #34C759; text-shadow: 0 0 12px rgba(52,199,89,0.7); }
+  .s-sc .lab { font-family: 'JetBrains Mono',monospace; font-size: 9px; letter-spacing: 0.1em; color: #F2F2F0; }
+  .s-sc .mid { font-family: 'Orbitron',sans-serif; font-size: 16px; color: #FFB800; animation: scblink 1.2s steps(2,start) infinite; padding-bottom: 8px; }
+  @keyframes scblink { 50% { opacity: 0.2; } }
+
+  .s-bl { background: #123C7E; padding: 20px; display: flex; flex-direction: column; position: relative; }
+  .s-bl::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(234,242,251,0.10) 1px, transparent 1px), linear-gradient(90deg, rgba(234,242,251,0.10) 1px, transparent 1px); background-size: 22px 22px; }
+  .s-bl .t { position: relative; font-family: 'JetBrains Mono','Noto Sans SC',monospace; font-size: 24px; font-weight: 600; color: #EAF2FB; margin-top: 8px; }
+  .s-bl .dim { position: relative; font-family: 'JetBrains Mono',monospace; font-size: 10px; color: #9DB8DC; margin-top: 8px; }
+  .s-bl .cross { position: absolute; color: #EAF2FB; font-family: 'JetBrains Mono',monospace; font-size: 14px; }
+  .s-bl .c1 { top: 4px; left: 6px; } .s-bl .c2 { top: 4px; right: 6px; } .s-bl .c3 { bottom: 4px; left: 6px; } .s-bl .c4 { bottom: 4px; right: 6px; }
+  .s-bl .tb { position: absolute; right: 12px; bottom: 10px; border: 1px solid #9DB8DC; padding: 5px 8px; font-family: 'JetBrains Mono',monospace; font-size: 8px; color: #EAF2FB; }
+
+  @media (max-width: 1400px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr); } body { padding: 24px; } }
+</style>
+</head>
+<body>
+  <h1>html-showcase · 20 套模板画廊</h1>
+  <div class="intro">
+    每一格 = 该模板渲染出的<b>标题页缩略效果</b>（内容为虚构示例）。实际使用时，模型会按各模板的 <code>design.md</code> 生成整套 1920×1080 页面。
+    模板清单见 <code>bold-template-pack/templates/</code>（每套含 design.md + preview.md）。
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="slide s-bp">
+        <div class="pill">2026 Q3 · 运营复盘</div>
+        <div class="t">运营数据复盘</div>
+        <div class="row">
+          <span class="chip"><b>320</b> 工单</span><span class="chip"><b>95.3%</b> 解决率</span><span class="chip"><b>2.1h</b> 响应</span>
+        </div>
+      </div>
+      <div class="cap"><div class="t">Blue Professional <span class="tag">商务 · 汇报</span></div><div class="d">米色纸 + 电光蓝，方案/汇报/投资人材料</div></div>
+    </div>
+
+    <div class="card">
+      <div class="slide s-sig">
+        <div class="k">Investor Update · Q3</div>
+        <div class="t">投资季报</div>
+        <div class="r"></div>
+        <div class="m">NAVY · GOLD · SERIF</div>
+      </div>
+      <div class="cap"><div class="t">Signal <span class="tag">正式 · 机构</span></div><div class="d">深海军蓝 + 哑金，董事材料/咨询交付/政策简报</div></div>
+    </div>
+
+    <div class="card">
+      <div class="slide s-mono">
+        <div class="k">Research · 2026</div>
+        <div class="t">研究报告</div>
+        <div class="r"></div>
+        <div class="m">BLACK INK · CREAM PAPER</div>
+      </div>
+      <div class="cap"><div class="t">Monochrome <span class="tag">报告 · 学术</span></div><div class="d">奶油纸全墨排版，研究报告/白皮书/学术材料</div></div>
+    </div>
+
+    <div class="card">
+      <div class="slide s-cg">
+        <div class="g"></div>
+        <div class="t">设计趋势</div>
+        <div class="r"></div>
+        <div class="m">DESIGN RESEARCH · 06</div>
+      </div>
+      <div class="cap"><div class="t">Cobalt Grid <span class="tag">研究 · 版式</span></div><div class="d">坐标纸 + 钴蓝衬线，设计研究/趋势报告/机构年刊</div></div>
+    </div>
+
+    <div class="card">
+      <div class="slide s-ng">
+        <div class="bar"></div>
+        <div class="t">数据对比</div>
+        <div class="m">Q3 VS Q2 · 环比</div>
+      </div>
+      <div class="cap"><div class="t">Neo-Grid Bold <span class="tag">强数据 · 编辑</span></div><div class="d">米白纸 + 霓虹黄，数据页/对比/流程</div></div>
+    </div>
+
+    <div class="card">
+      <div class="slide s-rg">
+        <div class="k">FOUNDER PITCH</div>
+        <div class="t">品牌路演</div>
+        <div class="r"></div>
+        <div class="m">PINK · SAGE · INK</div>
+      </div>
+      <div class="cap"><div class="t">Raw Grid <span class="tag">新粗野 · 路演</span></div><div class="d">粗边框 + 错位阴影，路演/品牌/创业者 pitch</div></div>
+    </div>
+
+    <div class="card">
+      <div class="slide s-sw">
+        <div class="gl"><i style="left:8.33%"></i><i style="left:16.67%"></i><i style="left:25%"></i><i style="left:33.33%"></i><i style="left:41.67%"></i><i style="left:50%"></i><i style="left:58.33%"></i><i style="left:66.67%"></i><i style="left:75%"></i><i style="left:83.33%"></i><i style="left:91.67%"></i></div>
+        <div class="k">Weekly Operations Report · W34</div>
+        <div class="t">运营周报</div>
+        <div class="r"></div>
+        <div class="m">01</div>
+      </div>
+      <div class="cap"><div class="t">Swiss Grid <span class="tag">瑞士排版 · 制度</span></div><div class="d">12 栏网格 + 信号红，运营周报/方法论/制度说明</div></div>
+    </div>
+
+    <div class="card">
+      <div class="slide s-dw">
+        <div class="k">KPI DEEP-DIVE · Q3</div>
+        <div class="t">KPI 复盘</div>
+        <div class="bars">
+          <i style="height:35%"></i><i style="height:52%"></i><i style="height:44%"></i><i style="height:68%"></i><i style="height:60%"></i><i style="height:82%" class="hl"></i><i style="height:74%"></i>
+        </div>
+        <div class="note">↑ 关键拐点</div>
+      </div>
+      <div class="cap"><div class="t">Data Wall <span class="tag">数据看板</span></div><div class="d">密集数据 + 一图一注释，数据分析/复盘/BI 报告</div></div>
+    </div>
+
+    <div class="card">
+      <div class="slide s-gp">
+        <div class="orb o1"></div><div class="orb o2"></div>
+        <div class="card">
+          <div class="t">产品方案</div>
+          <div class="m">玻璃拟态 · 现代 SaaS</div>
+        </div>
+      </div>
+      <div class="cap"><div class="t">Glass Panel <span class="tag">玻璃拟态</span></div><div class="d">磨砂玻璃 + 柔和渐变，产品介绍/方案演示/团队介绍</div></div>
+    </div>
+
+    <div class="card">
+      <div class="slide s-aur">
+        <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+        <div class="k">ANNUAL STRATEGY</div>
+        <div class="t">年度战略</div>
+      </div>
+      <div class="cap"><div class="t">Aurora <span class="tag">大场面 · 品牌</span></div><div class="d">全幅极光渐变 + 超大白字，品牌发布/年度战略/开场收尾</div></div>
+    </div>
+
+    <div class="card">
+      <div class="slide s-db">
+        <div class="board">
+          <div class="bt"><span>项目调度看板</span><span class="clk">09:42:17</span></div>
+          <div class="row"><span>09:00</span><span>P-01</span><span class="dest">平台上线</span><span class="gate">A</span></div>
+          <div class="row"><span>10:30</span><span>P-02</span><span class="dest">大促预热</span><span class="st">NOW</span></div>
+          <div class="row"><span>14:00</span><span>P-03</span><span class="dest">数据迁移</span><span class="gate">C</span></div>
+        </div>
+      </div>
+      <div class="cap"><div class="t">Departure Board <span class="tag">调度大屏</span></div><div class="d">橙字黑底翻牌屏，项目调度/运营大屏/倒计时</div></div>
+    </div>
+
+    <div class="card">
+      <div class="slide s-tk">
+        <div class="ln">&gt; system status OK<span class="cur">▊</span></div>
+        <div class="ln" style="font-size:13px;color:#B8FFA8">[09:42:17] all services nominal</div>
+        <div class="m">PHOSPHOR CRT · 60Hz</div>
+      </div>
+      <div class="cap"><div class="t">Ticker Console <span class="tag">终端 · 极客</span></div><div class="d">绿色 CRT 扫描线，技术周报/系统状态/发布日志</div></div>
+    </div>
+
+    <div class="card">
+      <div class="slide s-bh">
+        <div class="circ"></div><div class="sq"></div><div class="bar"></div>
+        <div class="t">创意提案</div>
+        <div class="r"></div>
+      </div>
+      <div class="cap"><div class="t">Bauhaus <span class="tag">包豪斯 · 几何</span></div><div class="d">几何形 + 三原色 + 不对称，创意提案/品牌概念/文化活动</div></div>
+    </div>
+
+    <div class="card">
+      <div class="slide s-gl">
+        <div class="k">Portfolio · 作品集</div>
+        <div class="t">作品集</div>
+        <div class="r"></div>
+        <div class="m">2020–2026 · 精选 12 件</div>
+      </div>
+      <div class="cap"><div class="t">Gallery Label <span class="tag">展签 · 高定</span></div><div class="d">白墙 + 衬线小字，作品展示/产品美学/品牌画册</div></div>
+    </div>
+
+    <div class="card">
+      <div class="slide s-rp">
+        <div class="dots"></div>
+        <div class="t">活动海报</div>
+        <div class="t2">夏夜市集</div>
+        <div class="m">RISO · 2 INK</div>
+        <span class="reg r1">+</span><span class="reg r2">+</span><span class="reg r3">+</span><span class="reg r4">+</span>
+      </div>
+      <div class="cap"><div class="t">Riso Print <span class="tag">印刷 · 社群</span></div><div class="d">双色套印错版 + 网点，活动海报/社群内容/创意运营</div></div>
+    </div>
+
+    <div class="card">
+      <div class="slide s-wa">
+        <div class="t">年度回顾</div>
+        <div class="r"></div>
+        <div class="seal">印</div>
+        <div class="m">和纸 · 侘寂</div>
+      </div>
+      <div class="cap"><div class="t">Washi <span class="tag">和风 · 极简</span></div><div class="d">暖纸 + 朱印 + 大留白，极简品牌/年度复盘/东方审美</div></div>
+    </div>
+
+    <div class="card">
+      <div class="slide s-mm">
+        <svg viewBox="0 0 344 194">
+          <path d="M20 40 H90 V120 H170 V60 H300" stroke="#1466B8" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M170 120 V170 H300" stroke="#D64541" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <circle cx="20" cy="40" r="5" fill="#1466B8"/><circle cx="90" cy="120" r="6" fill="#fff" stroke="#1466B8" stroke-width="3"/>
+          <circle cx="170" cy="60" r="6" fill="#fff" stroke="#D64541" stroke-width="3"/><circle cx="300" cy="60" r="7" fill="#1466B8"/>
+        </svg>
+        <div class="t">流程地图</div>
+        <div class="legend"><span><i style="background:#1466B8"></i> 主线</span><span><i style="background:#D64541"></i> 分支</span></div>
+      </div>
+      <div class="cap"><div class="t">Metro Map <span class="tag">图示 · 流程</span></div><div class="d">45° 线路节点图，流程/组织架构/路径规划</div></div>
+    </div>
+
+    <div class="card">
+      <div class="slide s-kb">
+        <div class="tape">本周进行中</div>
+        <div class="note">上线前检查项 12/14</div>
+        <div class="note2">渠道结算 待确认</div>
+      </div>
+      <div class="cap"><div class="t">Kanban <span class="tag">看板墙 · 协作</span></div><div class="d">便签 + 和纸胶带，项目进度/运营日常/复盘</div></div>
+    </div>
+
+    <div class="card">
+      <div class="slide s-sc">
+        <div><div class="lab">TARGET</div><div class="num n1">120</div></div>
+        <div class="mid">VS</div>
+        <div><div class="lab">ACTUAL</div><div class="num n2">96</div></div>
+      </div>
+      <div class="cap"><div class="t">Scoreboard <span class="tag">KPI 冲刺</span></div><div class="d">七段 LED 大数字，KPI 冲刺/目标竞赛/大促倒计时</div></div>
+    </div>
+
+    <div class="card">
+      <div class="slide s-bl">
+        <div class="t">规划蓝图</div>
+        <div class="dim">SCALE 1:100 · REV 03</div>
+        <span class="cross c1">✚</span><span class="cross c2">✚</span><span class="cross c3">✚</span><span class="cross c4">✚</span>
+        <div class="tb">PROJECT / Q3 ROADMAP</div>
+      </div>
+      <div class="cap"><div class="t">Blueprint <span class="tag">蓝图 · 工程</span></div><div class="d">蓝底白线工程图，方案图纸/规划蓝图/技术架构</div></div>
+    </div>
+
+  </div>
+</body>
+</html>

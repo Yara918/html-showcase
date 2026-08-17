@@ -1,0 +1,492 @@
+{
+  "schema_version": 1,
+  "pack_name": "Curated HTML Design Systems",
+  "template_count": 20,
+  "usage": {
+    "selection": "Read this compact index first to shortlist templates from metadata.",
+    "previews": "For title-slide previews, read only the preview_md files for the shortlisted candidates.",
+    "final_generation": "After the user chooses a template, read exactly that template design_md before generating the full deck.",
+    "never": "Do not bulk-read templates/*/design.md and do not read template.html unless the selected design.md is missing a critical implementation detail."
+  },
+  "fixed_stage_policy": {
+    "layout_model": "fixed-stage",
+    "canvas_width": 1920,
+    "canvas_height": 1080,
+    "scaling": "scale-stage-to-viewport",
+    "mobile_behavior": "preserve 16:9 stage; letterbox or pillarbox instead of reflowing slide content"
+  },
+  "templates": [
+    {
+      "slug": "aurora",
+      "name": "Aurora",
+      "tagline": "Full-bleed aurora gradients with oversized white display type: cinematic brand moments.",
+      "mood": [
+        "cinematic",
+        "bold",
+        "luminous",
+        "premium"
+      ],
+      "tone": [
+        "confident",
+        "aspirational",
+        "expressive"
+      ],
+      "formality": "medium-low",
+      "density": "low",
+      "scheme": "dark",
+      "best_for": "Brand launches, annual strategy moments, keynote opens and closes, vision statements, product reveals — decks built around big single statements.",
+      "avoid_for": "Dense data or formal documents — the canvas commits to oversized cinematic statements.",
+      "preview_md": "bold-template-pack/templates/aurora/preview.md",
+      "design_md": "bold-template-pack/templates/aurora/design.md"
+    },
+    {
+      "slug": "bauhaus",
+      "name": "Bauhaus",
+      "tagline": "Bauhaus poster language: primary-color circles and bars, geometric sans, strict asymmetric composition.",
+      "mood": [
+        "geometric",
+        "bold",
+        "artful",
+        "playful-serious"
+      ],
+      "tone": [
+        "confident",
+        "graphic",
+        "modernist"
+      ],
+      "formality": "medium",
+      "density": "medium",
+      "scheme": "light",
+      "best_for": "Creative proposals, brand-concept decks, design pitches, cultural and art events, studio portfolios.",
+      "avoid_for": "Dense data documents or formal institutional decks.",
+      "preview_md": "bold-template-pack/templates/bauhaus/preview.md",
+      "design_md": "bold-template-pack/templates/bauhaus/design.md"
+    },
+    {
+      "slug": "blueprint",
+      "name": "Blueprint",
+      "tagline": "Drafting-table blueprint: deep blue field, white grid lines, technical lettering, and corner registration marks.",
+      "mood": [
+        "technical",
+        "precise",
+        "constructive",
+        "retro-future"
+      ],
+      "tone": [
+        "exact",
+        "confident",
+        "engineered"
+      ],
+      "formality": "medium-high",
+      "density": "medium",
+      "scheme": "dark",
+      "best_for": "Project blueprints, planning roadmaps, technical architecture, go-to-market plans — any 'this is how it's built' deck.",
+      "avoid_for": "Soft brand storytelling.",
+      "preview_md": "bold-template-pack/templates/blueprint/preview.md",
+      "design_md": "bold-template-pack/templates/blueprint/design.md"
+    },
+    {
+      "slug": "blue-professional",
+      "name": "Blue Professional",
+      "tagline": "Cream paper background with electric cobalt blue accents; clean modern professional.",
+      "mood": [
+        "professional",
+        "modern",
+        "calm",
+        "trustworthy"
+      ],
+      "tone": [
+        "clean",
+        "considered",
+        "polished",
+        "neutral"
+      ],
+      "formality": "medium-high",
+      "density": "medium",
+      "scheme": "light",
+      "best_for": "Anything that should feel modern-considered and lightly authoritative: B2B SaaS pitches, consulting deliverables, advisory updates, investor reports. Also a clean, tasteful choice whenever you want to read as professional without going stiff — research synthesis, internal reviews, brand work for service businesses.",
+      "avoid_for": "Contexts where the deck should feel hot, playful, or intentionally informal — the cool electric-blue restraint will read as overly polished.",
+      "preview_md": "bold-template-pack/templates/blue-professional/preview.md",
+      "design_md": "bold-template-pack/templates/blue-professional/design.md"
+    },
+    {
+      "slug": "cobalt-grid",
+      "name": "Cobalt Grid",
+      "tagline": "Electric cobalt serifs on a graph-paper canvas, anchored by stair-stepped pixel-glitch decorations and slim hairline rules.",
+      "mood": [
+        "editorial",
+        "design-research",
+        "studious",
+        "modernist",
+        "tech-print",
+        "monochrome"
+      ],
+      "tone": [
+        "considered",
+        "literary",
+        "studious",
+        "quietly-modern",
+        "editorial"
+      ],
+      "formality": "high",
+      "density": "medium",
+      "scheme": "light",
+      "best_for": "Anything that should feel like a quietly serious design / research bulletin, art publication, or curated trend report. Strong for studio annuals, agency capabilities decks, design-research publications, architecture / art / academic decks, and any deck wanting one strict accent colour and a printed-ledger calmness rather than corporate polish.",
+      "avoid_for": "Decks that need warmth, multi-colour energy, or a casual / playful voice — the strict cobalt + cream + grid palette is intentionally austere.",
+      "preview_md": "bold-template-pack/templates/cobalt-grid/preview.md",
+      "design_md": "bold-template-pack/templates/cobalt-grid/design.md"
+    },
+    {
+      "slug": "data-wall",
+      "name": "Data Wall",
+      "tagline": "A dense, annotation-first data canvas: small-multiple charts, hairline axes, and one highlighted insight per slide.",
+      "mood": [
+        "analytical",
+        "dense",
+        "editorial",
+        "evidence-led"
+      ],
+      "tone": [
+        "rigorous",
+        "precise",
+        "calm",
+        "intelligent"
+      ],
+      "formality": "high",
+      "density": "very high",
+      "scheme": "light",
+      "best_for": "Data dashboards, analytics reviews, KPI deep-dives, experiment reports, market snapshots, annual reviews — decks built to carry dense evidence.",
+      "avoid_for": "Keynote-style low-content talks — the system is designed around dense, annotated evidence.",
+      "preview_md": "bold-template-pack/templates/data-wall/preview.md",
+      "design_md": "bold-template-pack/templates/data-wall/design.md"
+    },
+    {
+      "slug": "departure-board",
+      "name": "Departure Board",
+      "tagline": "A Solari split-flap board: black panel, orange-on-black characters, destination rows, and a live clock.",
+      "mood": [
+        "utilitarian",
+        "kinetic",
+        "alert",
+        "precise"
+      ],
+      "tone": [
+        "direct",
+        "operational",
+        "energetic"
+      ],
+      "formality": "medium",
+      "density": "high",
+      "scheme": "dark",
+      "best_for": "Project dispatch boards, operations command screens, launch countdowns, sprint boards, event schedules — any live-status wall.",
+      "avoid_for": "Soft corporate narratives — the board voice is mechanical and loud.",
+      "preview_md": "bold-template-pack/templates/departure-board/preview.md",
+      "design_md": "bold-template-pack/templates/departure-board/design.md"
+    },
+    {
+      "slug": "gallery-label",
+      "name": "Gallery Label",
+      "tagline": "White-gallery restraint: small-caps serif labels, generous margins, and art-caption typography.",
+      "mood": [
+        "quiet",
+        "elegant",
+        "curatorial",
+        "premium"
+      ],
+      "tone": [
+        "refined",
+        "unhurried",
+        "authoritative-quiet"
+      ],
+      "formality": "high",
+      "density": "low",
+      "scheme": "light",
+      "best_for": "Portfolio showcases, product aesthetics, brand books, luxury and premium pitches, art-direction reviews — any deck where restraint is the message.",
+      "avoid_for": "Dense operational data or energetic launches.",
+      "preview_md": "bold-template-pack/templates/gallery-label/preview.md",
+      "design_md": "bold-template-pack/templates/gallery-label/design.md"
+    },
+    {
+      "slug": "glass-panel",
+      "name": "Glass Panel",
+      "tagline": "Frosted-glass panels floating over a soft gradient field: calm, modern, depth through blur.",
+      "mood": [
+        "modern",
+        "calm",
+        "airy",
+        "premium"
+      ],
+      "tone": [
+        "friendly",
+        "polished",
+        "contemporary"
+      ],
+      "formality": "medium",
+      "density": "low-medium",
+      "scheme": "light",
+      "best_for": "Product walkthroughs, solution pitches, team and culture decks, onboarding explainers — anything wanting a modern premium SaaS feel.",
+      "avoid_for": "Dense formal documents or print-like editorial — glass panels read as screen-native.",
+      "preview_md": "bold-template-pack/templates/glass-panel/preview.md",
+      "design_md": "bold-template-pack/templates/glass-panel/design.md"
+    },
+    {
+      "slug": "kanban",
+      "name": "Kanban",
+      "tagline": "A physical kanban wall: cork-board texture, washi-tape columns, sticky notes, handwritten energy.",
+      "mood": [
+        "casual",
+        "tactile",
+        "collaborative",
+        "warm"
+      ],
+      "tone": [
+        "friendly",
+        "honest",
+        "energetic"
+      ],
+      "formality": "low",
+      "density": "medium-high",
+      "scheme": "light",
+      "best_for": "Project boards, ops daily standups, sprint reviews, team retrospectives, work-in-progress walls, activity recaps.",
+      "avoid_for": "Formal client-facing or high-authority decks.",
+      "preview_md": "bold-template-pack/templates/kanban/preview.md",
+      "design_md": "bold-template-pack/templates/kanban/design.md"
+    },
+    {
+      "slug": "metro-map",
+      "name": "Metro Map",
+      "tagline": "Tube-map diagram language: 45° lines, colored routes, and interchange nodes for process and org maps.",
+      "mood": [
+        "diagrammatic",
+        "structured",
+        "clean",
+        "urban"
+      ],
+      "tone": [
+        "clear",
+        "systematic",
+        "contemporary"
+      ],
+      "formality": "medium",
+      "density": "medium",
+      "scheme": "light",
+      "best_for": "Process flows, org structures, user journeys, roadmap stages, supply-chain routes — any content that is a set of nodes and connections.",
+      "avoid_for": "Narrative prose decks — this is a diagram-first system.",
+      "preview_md": "bold-template-pack/templates/metro-map/preview.md",
+      "design_md": "bold-template-pack/templates/metro-map/design.md"
+    },
+    {
+      "slug": "monochrome",
+      "name": "Monochrome",
+      "tagline": "Ivory ledger paper with all-black type; Lora serif headlines, Jost body, no color at all.",
+      "mood": [
+        "restrained",
+        "literary",
+        "archival",
+        "ledger"
+      ],
+      "tone": [
+        "literary",
+        "considered",
+        "neutral",
+        "honest"
+      ],
+      "formality": "high",
+      "density": "high",
+      "scheme": "light",
+      "best_for": "Anything that should feel like a hand-typeset ledger: user research synthesis, white papers, longform reports, academic and policy briefs, advisory deliverables, bilingual EN/CN reports. Equally good for tech, design, or brand decks that want their words to be the only thing on the page.",
+      "avoid_for": "Decks that need visual personality or color-led storytelling — the all-ink palette is intentionally austere.",
+      "preview_md": "bold-template-pack/templates/monochrome/preview.md",
+      "design_md": "bold-template-pack/templates/monochrome/design.md"
+    },
+    {
+      "slug": "neo-grid-bold",
+      "name": "Neo-Grid Bold",
+      "tagline": "Editorial neo-brutalism with a single neon yellow accent on off-white paper.",
+      "mood": [
+        "confident",
+        "punchy",
+        "editorial",
+        "modern"
+      ],
+      "tone": [
+        "bold",
+        "minimal",
+        "design-led",
+        "graphic"
+      ],
+      "formality": "medium",
+      "density": "high",
+      "scheme": "light",
+      "best_for": "Anything that should feel confident and editorial-graphic: design-led pitches, brand work, founder talks, conference keynotes. Excellent for stat-heavy slides, comparisons, and process flows. Just as strong for tech, research, or finance when the speaker wants to read as design-led rather than corporate.",
+      "avoid_for": "Contexts that need to feel quiet, traditional, or warm — the neon-yellow accent and uppercase display commit to a confident editorial voice.",
+      "preview_md": "bold-template-pack/templates/neo-grid-bold/preview.md",
+      "design_md": "bold-template-pack/templates/neo-grid-bold/design.md"
+    },
+    {
+      "slug": "raw-grid",
+      "name": "Raw Grid",
+      "tagline": "Neo-brutalist deck with thick borders, offset shadows, and a pink/sage/ink palette.",
+      "mood": [
+        "raw",
+        "punchy",
+        "energetic",
+        "confident"
+      ],
+      "tone": [
+        "direct",
+        "modern",
+        "no-nonsense",
+        "graphic"
+      ],
+      "formality": "medium-low",
+      "density": "high",
+      "scheme": "light",
+      "best_for": "Anything that should feel direct and graphic-confident: founder pitches, accelerator demos, brand decks, indie launches, creator portfolios. Strong for stat slides, comparison tables, and process flows. Equally good for tech, research, or finance when the speaker wants the deck to feel scrappy-confident rather than buttoned-up.",
+      "avoid_for": "Contexts that need to feel soft, warm, or intentionally quiet — the brutalist borders and offset shadows commit to a graphic voice.",
+      "preview_md": "bold-template-pack/templates/raw-grid/preview.md",
+      "design_md": "bold-template-pack/templates/raw-grid/design.md"
+    },
+    {
+      "slug": "riso-print",
+      "name": "Riso Print",
+      "tagline": "Risograph printing: 2-3 ink colors, coarse halftone, misregistration offsets, and paper grain.",
+      "mood": [
+        "tactile",
+        "handmade",
+        "vibrant",
+        "zine"
+      ],
+      "tone": [
+        "playful",
+        "direct",
+        "artful",
+        "indie"
+      ],
+      "formality": "low-medium",
+      "density": "medium-high",
+      "scheme": "light",
+      "best_for": "Event posters, cultural and community content, zine-style reports, social-campaign recaps, creative-operations showcases.",
+      "avoid_for": "Formal corporate documents or dense financial data.",
+      "preview_md": "bold-template-pack/templates/riso-print/preview.md",
+      "design_md": "bold-template-pack/templates/riso-print/design.md"
+    },
+    {
+      "slug": "scoreboard",
+      "name": "Scoreboard",
+      "tagline": "A stadium scoreboard: seven-segment LED numerals, black panel, team colors, big KPI drama.",
+      "mood": [
+        "competitive",
+        "bold",
+        "energetic",
+        "celebratory"
+      ],
+      "tone": [
+        "direct",
+        "punchy",
+        "high-energy"
+      ],
+      "formality": "low-medium",
+      "density": "medium",
+      "scheme": "dark",
+      "best_for": "KPI races, goal competitions, sales-contest walls, campaign countdowns, quarter showdowns — any us-vs-target framing.",
+      "avoid_for": "Quiet formal documents.",
+      "preview_md": "bold-template-pack/templates/scoreboard/preview.md",
+      "design_md": "bold-template-pack/templates/scoreboard/design.md"
+    },
+    {
+      "slug": "signal",
+      "name": "Signal",
+      "tagline": "Deep navy canvas with bone paper and a single muted-gold accent; institutional with quiet weight.",
+      "mood": [
+        "institutional",
+        "trustworthy",
+        "considered",
+        "weighty"
+      ],
+      "tone": [
+        "sober",
+        "polished",
+        "established",
+        "literary"
+      ],
+      "formality": "high",
+      "density": "high",
+      "scheme": "mixed",
+      "best_for": "Anything that should feel weighty, considered, and credibly institutional: investor decks, board presentations, consulting deliverables, legal / policy briefs, advisory pitches. Also a strong choice for tech, research, or brand work that wants to read as quietly authoritative rather than loud.",
+      "avoid_for": "Contexts that should feel hot, fast, or intentionally playful — the navy + gold restraint commits to a sober voice.",
+      "preview_md": "bold-template-pack/templates/signal/preview.md",
+      "design_md": "bold-template-pack/templates/signal/design.md"
+    },
+    {
+      "slug": "swiss-grid",
+      "name": "Swiss Grid",
+      "tagline": "Objective Swiss International Typography: a strict 12-column grid, grotesque sans, and a single signal-red accent.",
+      "mood": [
+        "objective",
+        "precise",
+        "editorial",
+        "modernist"
+      ],
+      "tone": [
+        "clear",
+        "confident",
+        "neutral",
+        "systematic"
+      ],
+      "formality": "high",
+      "density": "medium-high",
+      "scheme": "light",
+      "best_for": "Operations reviews, process documentation, methodology decks, KPI definitions, quarterly reports, policy and standard explanations — anything that should read as rational, structured and trustworthy.",
+      "avoid_for": "Playful, warm, or story-led decks — the objective grid voice refuses decoration.",
+      "preview_md": "bold-template-pack/templates/swiss-grid/preview.md",
+      "design_md": "bold-template-pack/templates/swiss-grid/design.md"
+    },
+    {
+      "slug": "ticker-console",
+      "name": "Ticker Console",
+      "tagline": "Vintage green-phosphor CRT: scanlines, uppercase mono type, blinking block cursor, system-log aesthetics.",
+      "mood": [
+        "retro",
+        "technical",
+        "nocturnal",
+        "hacker"
+      ],
+      "tone": [
+        "direct",
+        "geeky",
+        "confident"
+      ],
+      "formality": "low-medium",
+      "density": "medium",
+      "scheme": "dark",
+      "best_for": "Tech updates, system-status walls, release logs, engineering-culture decks, internal dev talks.",
+      "avoid_for": "Formal institutional or consumer-brand decks.",
+      "preview_md": "bold-template-pack/templates/ticker-console/preview.md",
+      "design_md": "bold-template-pack/templates/ticker-console/design.md"
+    },
+    {
+      "slug": "washi",
+      "name": "Washi",
+      "tagline": "Quiet Japanese minimalism: warm paper, ink brush strokes, generous emptiness, and vertical rhythm.",
+      "mood": [
+        "serene",
+        "minimal",
+        "deliberate",
+        "natural"
+      ],
+      "tone": [
+        "calm",
+        "refined",
+        "understated"
+      ],
+      "formality": "high",
+      "density": "low",
+      "scheme": "light",
+      "best_for": "Minimalist brand decks, annual reflections, cultural content, traditional industries — anything wanting calm and breathing room.",
+      "avoid_for": "Urgent, data-heavy, or loud operational walls.",
+      "preview_md": "bold-template-pack/templates/washi/preview.md",
+      "design_md": "bold-template-pack/templates/washi/design.md"
+    }
+  ]
+}
